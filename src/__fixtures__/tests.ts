@@ -1,10 +1,9 @@
-import { Selector, Options } from "..";
+import { Selector, SelectorType, AttributeAction, IgnoreCaseMode } from "..";
 
 export const tests: [
     selector: string,
     expected: Selector[][],
-    message: string,
-    options?: Options
+    message: string
 ][] = [
     // Tag names
     [
@@ -12,7 +11,7 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -25,7 +24,7 @@ export const tests: [
         [
             [
                 {
-                    type: "universal",
+                    type: SelectorType.Universal,
                     namespace: null,
                 },
             ],
@@ -39,15 +38,15 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
                 {
-                    type: "descendant",
+                    type: SelectorType.Descendant,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -60,15 +59,15 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
                 {
-                    type: "descendant",
+                    type: SelectorType.Descendant,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -81,15 +80,15 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
                 {
-                    type: "adjacent",
+                    type: SelectorType.Adjacent,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -102,15 +101,15 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
                 {
-                    type: "sibling",
+                    type: SelectorType.Sibling,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -123,15 +122,15 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "p",
                 },
                 {
-                    type: "parent",
+                    type: SelectorType.Parent,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "div",
                 },
@@ -146,18 +145,18 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "id",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.QuirksMode,
                     value: " ",
                 },
                 {
-                    type: "child",
+                    type: SelectorType.Child,
                 },
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "a",
                 },
@@ -170,11 +169,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "class",
-                    action: "element",
-                    ignoreCase: false,
+                    action: AttributeAction.Element,
+                    ignoreCase: IgnoreCaseMode.QuirksMode,
                     value: " ",
                 },
             ],
@@ -186,11 +185,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "class",
-                    action: "element",
-                    ignoreCase: false,
+                    action: AttributeAction.Element,
+                    ignoreCase: IgnoreCaseMode.QuirksMode,
                     value: "m™²³",
                 },
             ],
@@ -202,7 +201,7 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "a",
                 },
@@ -215,7 +214,7 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "\uD834\uDF06\uD834\uDF06",
                 },
@@ -228,11 +227,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "id",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.QuirksMode,
                     value: "&B",
                 },
             ],
@@ -246,11 +245,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    ignoreCase: false,
-                    action: "start",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Start,
                     value: "foo[",
                 },
             ],
@@ -262,11 +261,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    ignoreCase: false,
-                    action: "start",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Start,
                     value: "foo[bar]",
                 },
             ],
@@ -278,11 +277,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    ignoreCase: false,
-                    action: "end",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.End,
                     value: "[bar]",
                 },
             ],
@@ -294,11 +293,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "href",
-                    ignoreCase: false,
-                    action: "any",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Any,
                     value: "google",
                 },
             ],
@@ -310,11 +309,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "value",
-                    ignoreCase: false,
-                    action: "equals",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Equals,
                     value: "\nsome text\n",
                 },
             ],
@@ -326,11 +325,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    ignoreCase: false,
-                    action: "equals",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Equals,
                     value: "foo.baz",
                 },
             ],
@@ -342,11 +341,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    ignoreCase: false,
-                    action: "equals",
+                    ignoreCase: IgnoreCaseMode.Unknown,
+                    action: AttributeAction.Equals,
                     value: "foo[bar]",
                 },
             ],
@@ -358,12 +357,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "xml:test",
-                    action: "exists",
+                    action: AttributeAction.Exists,
                     value: "",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -374,12 +373,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     name: "name",
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     value: "foo ~ < > , bar",
-                    ignoreCase: true,
+                    ignoreCase: IgnoreCaseMode.IgnoreCase,
                 },
             ],
         ],
@@ -392,11 +391,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "id",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.QuirksMode,
                     value: ".identifier",
                 },
             ],
@@ -410,8 +409,35 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo-element",
+                    type: SelectorType.PseudoElement,
                     name: "foo",
+                    data: null,
+                },
+            ],
+        ],
+        "pseudo-element",
+    ],
+    [
+        "::foo()",
+        [
+            [
+                {
+                    type: SelectorType.PseudoElement,
+                    name: "foo",
+                    data: "",
+                },
+            ],
+        ],
+        "pseudo-element",
+    ],
+    [
+        "::foo(bar())",
+        [
+            [
+                {
+                    type: SelectorType.PseudoElement,
+                    name: "foo",
+                    data: "bar()",
                 },
             ],
         ],
@@ -424,7 +450,7 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "foo",
                     data: null,
                 },
@@ -437,7 +463,7 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "bar",
                     data: "baz",
                 },
@@ -450,7 +476,7 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "contains",
                     data: "(foo)",
                 },
@@ -463,12 +489,12 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "where",
                     data: [
                         [
                             {
-                                type: "tag",
+                                type: SelectorType.Tag,
                                 namespace: null,
                                 name: "a",
                             },
@@ -484,9 +510,9 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "contains",
-                    data: "(a((foo\\))))",
+                    data: "(a((foo))))",
                 },
             ],
         ],
@@ -497,7 +523,7 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "icontains",
                     data: "",
                 },
@@ -510,7 +536,7 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "contains",
                     data: "(foo)",
                 },
@@ -525,14 +551,14 @@ export const tests: [
         [
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "a",
                 },
             ],
             [
                 {
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                     name: "b",
                 },
@@ -546,19 +572,19 @@ export const tests: [
         [
             [
                 {
-                    type: "pseudo",
+                    type: SelectorType.Pseudo,
                     name: "host",
                     data: [
                         [
                             {
-                                type: "tag",
+                                type: SelectorType.Tag,
                                 namespace: null,
                                 name: "h1",
                             },
                         ],
                         [
                             {
-                                type: "tag",
+                                type: SelectorType.Tag,
                                 namespace: null,
                                 name: "p",
                             },
@@ -579,11 +605,11 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "id",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                     value: "types_all",
                 },
             ],
@@ -595,12 +621,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "name",
                     value: "foo bar",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -611,12 +637,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "name",
                     value: "foo.baz",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -627,12 +653,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "name",
                     value: "foo[baz]",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -643,12 +669,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "foo_baz']",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -659,12 +685,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "'",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -675,12 +701,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -691,12 +717,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\'",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -707,12 +733,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\\\",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -723,12 +749,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\\\",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -739,12 +765,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\\\",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -755,12 +781,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\\\\",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -771,12 +797,12 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\u4e00",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -787,101 +813,37 @@ export const tests: [
         [
             [
                 {
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
-                    action: "equals",
+                    action: AttributeAction.Equals,
                     name: "data-attr",
                     value: "\uD834\uDF06A",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
         "Long numeric escape (non-BMP)",
     ],
-
-    // Options
     [
         "fOo[baR]",
         [
             [
                 {
                     name: "fOo",
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: null,
                 },
                 {
-                    action: "exists",
+                    action: AttributeAction.Exists,
                     name: "baR",
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: null,
                     value: "",
-                    ignoreCase: null,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
-        "XML mode",
-        { xmlMode: true },
-    ],
-    [
-        "#myID",
-        [
-            [
-                {
-                    action: "equals",
-                    name: "id",
-                    type: "attribute",
-                    namespace: null,
-                    value: "myID",
-                    ignoreCase: null,
-                },
-            ],
-        ],
-        "IDs in XML mode",
-        { xmlMode: true },
-    ],
-    [
-        "fOo[baR]",
-        [
-            [
-                {
-                    name: "foo",
-                    type: "tag",
-                    namespace: null,
-                },
-                {
-                    action: "exists",
-                    name: "baR",
-                    type: "attribute",
-                    namespace: null,
-                    value: "",
-                    ignoreCase: false,
-                },
-            ],
-        ],
-        "`lowerCaseAttributeNames` option",
-        { lowerCaseAttributeNames: false },
-    ],
-    [
-        "fOo[baR]",
-        [
-            [
-                {
-                    name: "fOo",
-                    type: "tag",
-                    namespace: null,
-                },
-                {
-                    action: "exists",
-                    name: "bar",
-                    type: "attribute",
-                    namespace: null,
-                    value: "",
-                    ignoreCase: false,
-                },
-            ],
-        ],
-        "`lowerCaseTags` option",
-        { lowerCaseTags: false },
+        "Mixed case tag and attribute name",
     ],
 
     // Namespaces
@@ -891,7 +853,7 @@ export const tests: [
             [
                 {
                     name: "bar",
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: "foo",
                 },
             ],
@@ -904,7 +866,7 @@ export const tests: [
             [
                 {
                     name: "bar",
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: "*",
                 },
             ],
@@ -917,7 +879,7 @@ export const tests: [
             [
                 {
                     name: "bar",
-                    type: "tag",
+                    type: SelectorType.Tag,
                     namespace: "",
                 },
             ],
@@ -929,7 +891,7 @@ export const tests: [
         [
             [
                 {
-                    type: "universal",
+                    type: SelectorType.Universal,
                     namespace: "*",
                 },
             ],
@@ -941,12 +903,12 @@ export const tests: [
         [
             [
                 {
-                    action: "exists",
+                    action: AttributeAction.Exists,
                     name: "bar",
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: "foo",
                     value: "",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -957,12 +919,12 @@ export const tests: [
         [
             [
                 {
-                    action: "exists",
+                    action: AttributeAction.Exists,
                     name: "bar",
-                    type: "attribute",
-                    namespace: "",
+                    type: SelectorType.Attribute,
+                    namespace: null,
                     value: "",
-                    ignoreCase: false,
+                    ignoreCase: IgnoreCaseMode.Unknown,
                 },
             ],
         ],
@@ -973,10 +935,10 @@ export const tests: [
         [
             [
                 {
-                    action: "equals",
-                    ignoreCase: true,
+                    action: AttributeAction.Equals,
+                    ignoreCase: IgnoreCaseMode.IgnoreCase,
                     name: "bar",
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: "foo",
                     value: "baz",
                 },
@@ -989,10 +951,10 @@ export const tests: [
         [
             [
                 {
-                    action: "equals",
-                    ignoreCase: true,
+                    action: AttributeAction.Equals,
+                    ignoreCase: IgnoreCaseMode.IgnoreCase,
                     name: "bar",
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     namespace: "*",
                     value: "baz",
                 },
@@ -1005,15 +967,57 @@ export const tests: [
         [
             [
                 {
-                    action: "equals",
-                    ignoreCase: false,
+                    action: AttributeAction.Equals,
+                    ignoreCase: IgnoreCaseMode.CaseSensitive,
                     name: "type",
-                    type: "attribute",
+                    type: SelectorType.Attribute,
                     value: "a",
                     namespace: null,
                 },
             ],
         ],
         "case-sensitive attribute selector",
+    ],
+    [
+        "foo || bar",
+        [
+            [
+                {
+                    name: "foo",
+                    namespace: null,
+                    type: SelectorType.Tag,
+                },
+                {
+                    type: SelectorType.ColumnCombinator,
+                },
+                {
+                    name: "bar",
+                    namespace: null,
+                    type: SelectorType.Tag,
+                },
+            ],
+        ],
+        "column combinator",
+    ],
+    [
+        "foo||bar",
+        [
+            [
+                {
+                    name: "foo",
+                    namespace: null,
+                    type: SelectorType.Tag,
+                },
+                {
+                    type: SelectorType.ColumnCombinator,
+                },
+                {
+                    name: "bar",
+                    namespace: null,
+                    type: SelectorType.Tag,
+                },
+            ],
+        ],
+        "column combinator without whitespace",
     ],
 ];

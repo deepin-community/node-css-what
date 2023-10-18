@@ -11,7 +11,7 @@ Build-Depends:
  , dh-sequence-nodejs
  , jest (>= 27~) <!nocheck>
  , ts-jest (>= 27~) <!nocheck>
-Standards-Version: 4.6.0
+Standards-Version: 4.6.1
 Vcs-Browser: https://salsa.debian.org/js-team/node-css-what
 Vcs-Git: https://salsa.debian.org/js-team/node-css-what.git
 Homepage: https://github.com/fb55/css-what
@@ -22,7 +22,8 @@ Architecture: all
 Multi-Arch: foreign
 Depends:
  ${misc:Depends}
-Breaks: node-css-select (<< 3.1.2~)
+Breaks: node-css-select (<< 5.1.0~)
+ , node-cheerio (<< 1.0.0~rc~11~)
 Description: CSS selector parser
  This module contains a CSS selector parser.
  .

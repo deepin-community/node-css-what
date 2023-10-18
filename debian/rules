@@ -8,4 +8,5 @@
 	dh $@
 
 override_dh_auto_build:
-	tsc --lib es6
+	tsc
+	tsc -p tsconfig.es.json

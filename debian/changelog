@@ -1,3 +1,49 @@
+node-css-what (6.1.0-5) UNRELEASED; urgency=medium
+
+  * Team upload
+  * Back to unstable
+
+ -- Yadd <yadd@debian.org>  Mon, 27 Jun 2022 09:12:19 +0200
+
+node-css-what (6.1.0-3) experimental; urgency=medium
+
+  * Team upload
+  * Fix nocheck target
+  * Breaks node-cheerio < 1.0.0~rc~11~
+
+ -- Yadd <yadd@debian.org>  Sun, 26 Jun 2022 17:21:14 +0200
+
+node-css-what (6.1.0-2) experimental; urgency=medium
+
+  * Team upload
+  * Breaks node-css-select < 5.1.0~
+
+ -- Yadd <yadd@debian.org>  Sun, 26 Jun 2022 09:18:29 +0200
+
+node-css-what (6.1.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 6.1.0
+  * Update build
+
+ -- Yadd <yadd@debian.org>  Sat, 25 Jun 2022 12:45:53 +0200
+
+node-css-what (5.1.0-3) unstable; urgency=medium
+
+  * Team upload
+  * Fix filenamemangle
+  * Declare compliance with policy 4.6.1
+  * Fix build links (Closes: #1011908)
+
+ -- Yadd <yadd@debian.org>  Sat, 28 May 2022 08:44:42 +0200
+
+node-css-what (5.1.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Fix build: move jest-diff to debian/nodejs/extcopies
+
+ -- Yadd <yadd@debian.org>  Mon, 06 Dec 2021 10:12:28 +0100
+
 node-css-what (5.1.0-1) unstable; urgency=medium
 
   * Team upload
